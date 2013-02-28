@@ -1,0 +1,28 @@
+
+@strongBgColor: #D6D6D6;
+@lightBgColor: #F5F5F5;
+
+html, body {
+  height: 100%;
+  background-color: @lightBgColor;
+}
+
+html {
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+}
+
+#leftBar {
+  background-color: @strongBgColor;
+  float:left;
+  height: 100%;
+  & > div {
+    padding: 1em 0.5em;
+  }
+}
+
+#mainContainer {
+  float: left;
+  & > div {
+    margin: 1em 0.5em;
+  }
+}
