@@ -5,6 +5,10 @@
     <meta name="layout" content="main" />
 </head>
 <body>
-lowl
+
+<div id="formContainer">
+    <g:render template="/tpl/inputForm${version ?: 1}" />
+</div>
+
 </body>
 </html>

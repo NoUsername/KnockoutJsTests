@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><g:layoutTitle default="Grails"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <r:require module="jquery" />
     <r:require module="lessStyles"/>
     <g:javascript src="knockout-2.2.1.js" />
     <g:layoutHead/>
@@ -20,11 +21,20 @@
 <div id="leftBar">
     <div>
         <h1>KnockoutDemo</h1>
+
+        <br/>
+        <ul>
+            <li><g:link controller="start" action="index1">Version 1</g:link></li>
+            <li><g:link controller="start" action="index2">Version 2</g:link></li>
+            <li><g:link controller="start" action="index3">Version 3</g:link></li>
+            <li><g:link controller="start" action="index4">Version 4</g:link></li>
+        </ul>
     </div>
 </div>
 
 <div id="mainContainer" >
-    <div>
+    <g:render template="/tpl/userInfo" />
+    <div id="mainContent">
     <g:layoutBody/>
     </div>
 </div>

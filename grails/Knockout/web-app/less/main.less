@@ -1,6 +1,14 @@
+@import "mixins";
 
-@strongBgColor: #D6D6D6;
-@lightBgColor: #F5F5F5;
+@strongBgColor: #62afc2;//#D6D6D6;
+@lightBgColor: lighten(@strongBgColor, 50%);//#F5F5F5;
+@topbarColor: lighten(@strongBgColor, 20%);
+
+@defaultOffset: 0.5em;
+
+.defaultInsets() {
+  padding: 2*@defaultOffset @defaultOffset;
+}
 
 html, body {
   height: 100%;
@@ -11,18 +19,48 @@ html {
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
 }
 
-#leftBar {
-  background-color: @strongBgColor;
+.split(@percent:50%) {
   float:left;
+  width: @percent;
+}
+
+.message {
+  //border: 1px solid @topbarColor;
+  padding: @defaultOffset;
+  margin-bottom: @defaultOffset;
+  .defaultShadow();
+}
+
+#leftBar {
+  .split(15%);
+  background-color: @strongBgColor;
   height: 100%;
   & > div {
-    padding: 1em 0.5em;
+    .defaultInsets();
+  }
+
+  a {
+    color: white;
   }
 }
 
 #mainContainer {
-  float: left;
-  & > div {
-    margin: 1em 0.5em;
+  .split(85%);
+  #mainContent {
+    .defaultInsets();
   }
+}
+
+.userInfo {
+  width: 100%;
+  display: block;
+  background-color: @topbarColor;
+  & > div {
+    .defaultInsets();
+  }
+}
+
+#userForm {
+  label { display: block;  }
+  input { display: block; }
 }
