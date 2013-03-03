@@ -7,7 +7,11 @@ class StartController {
 
     def index() {
         int version = params.int("version", 1)
-        return render(view:'index', model:[version: version, user: User.get(1)])
+        String view = "index"
+        if (version > 5) { // enable knockout.js
+            view = "indexKo"
+        }
+        return render(view:view, model:[version: version, user: User.get(1)])
     }
 
     def saveUser() {
@@ -24,12 +28,32 @@ class StartController {
 
     def saveUser4() {
         // small hack to show that our js actually does something
-        params.userName = ((String)params.get("userName", "foo")).replace("foo", "bar")
+        improveUserInput("userName", "status", "email")
         return render(saveUserObject() as JSON)
     }
 
     def saveUser5() {
         return render(saveUserObject() as JSON)
+    }
+
+    def saveUser6() {
+        improveUserInput("userName", "status", "email")
+        Map model = saveUserObject()
+        model.put("currentDate", new Date().toString())
+        List randomList = []
+        for (int i=0; i<10; i++) { randomList.add(Random.newInstance().nextInt(50)).toString() }
+        model.put("randomList", randomList)
+        if (params.containsKey("noMsg")) {
+            model['msg'] = null;
+        }
+        return render(model as JSON)
+    }
+
+    private improveUserInput(String... paramNames) {
+        paramNames.each { paramName ->
+            params[paramName] = ((String)params.get(paramName, "foo")).replace("foo", "bar")
+        }
+
     }
 
     private Map saveUserObject() {

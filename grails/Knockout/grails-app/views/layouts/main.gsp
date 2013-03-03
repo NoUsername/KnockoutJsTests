@@ -12,6 +12,7 @@
     <r:require module="jquery" />
     <r:require module="lessStyles"/>
     <g:javascript src="knockout-2.2.1.js" />
+    <g:javascript src="knockout.mapping.2.4.1.js" />
     <g:layoutHead/>
     <r:layoutResources/>
 </head>
@@ -24,7 +25,7 @@
 
         <br/>
         <ul>
-            <g:each in="${[1,2,3,4,5]}" var="i">
+            <g:each in="${[1,2,3,4,5,6]}" var="i">
                 <li><g:link controller="start" action="index" params="[version:i]">Version ${i}</g:link></li>
             </g:each>
         </ul>
@@ -32,10 +33,7 @@
 </div>
 
 <div id="mainContainer" >
-    <g:render template="/tpl/userInfo" />
-    <div id="mainContent">
     <g:layoutBody/>
-    </div>
 </div>
 
     <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
