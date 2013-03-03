@@ -130,6 +130,14 @@ html body {
 }
 html #container {
   height: 100%;
+  line-height: 1%;
+}
+html #container .breaker {
+  display: block;
+  visibility: hidden;
+  clear: both;
+  width: 0px;
+  height: 0px;
 }
 html #container > div {
   color: grey;
