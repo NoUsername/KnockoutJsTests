@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+<!----  START OF SLIDES  ---->
+
+
+
+
+    <section>
+        <h1>knockout.js</h1>
+        <h1>data-binding</h1>
+        <p>
+        <br>
+    </p>
+    <p>- OR -</p>
+    <p>
+    <br>
+</p>
+<h3>Why you are doing ajax wrong...</h3>
+</section>
+<section>
+    <h2>Central Question:</h2>
+    <div>How do you get your dynamic data into your static html?</div>
+    <div>
+        <br>
+    </div>
+    <div>We have already come a long way:</div>
+    <div>
+        <br>
+    </div>
+    <pre><code>&lt;?php
+function getUsername() {
+  // fancy db access, prepared statement, stored procedures etc...
+  // or that: "select * from users where id=" + $_GET['id']
+  // my 1337 h4xx0r sense is tingling!
+  return "username";
+}
+?&gt;
+&lt;h1&gt;Welcome &lt;?php echo getUsername(); ?&gt;&lt;/h1&gt;<br>
+</code></pre>
+<p>
+<br>
+</p>
+</section>
+<section>
+    <h2>What we all know</h2>
+    <div>
+        <br>
+    </div>
+    <div>
+        <ul>
+            <li>Separation of Controller / View ...</li>
+            <li>and Model and ViewModel</li>
+            <li>and Service and DTOs</li>
+            <li>and Presenter and Supervisor</li>
+            <li>and Active/Passive View</li>
+        </ul>
+        <div style="text-align: left;">
+            <br>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <br>
+    </div>
+    <div style="text-align: center;">not our topic today...</div>
+</section>
+<section>
+    <h2>Where we are</h2>
+    <div>
+        <br>
+    </div>
+    <pre><code>    &lt;label for="userName"&gt;Name&lt;/label&gt;
+    &lt;g:textField name="userName" value="${user?.userName}" /&gt;
+
+    &lt;label for="status"&gt;Status&lt;/label&gt;
+    &lt;g:textField name="status" value="${user?.status}" /&gt;
+
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;g:textField name="email" value="${user?.email}" /&gt;<br>
+</code></pre>
+<p>
+<br>
+</p>
+<p>Everything works fine,</p>
+<p>what are you complaining about?</p>
+</section>
+<section>
+    <h2>But then we introduce AJAX</h2>
+    <div>e.g. for submitting a form without reloading</div>
+    <div>the whole page</div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <img src="https://dl.dropbox.com/u/1526874/knockout/ajax.jpg">
+        <br>
+    </div>
+</section>
+<section>
+    <h2>we have 2 Options</h2>
+    <div>
+        <ul>
+            <li>
+                <span style="letter-spacing: -0.02em;text-align: center;">respond with HTML</span>
+                <br>
+            </li>
+            <li>
+                <span style="text-align: center;letter-spacing: -0.02em;">respond with XML/JSON</span>
+                <br>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <img src="http://dl.dropbox.com/u/1526874/knockout/ajaj.jpg">
+        <br>
+    </div>
+</section>
+<section>
+    <h2>Responding with HTML</h2>
+    <div>
+        <br>
+    </div>
+    <h3>pros:</h3>
+    <div style="text-align: center;">
+        <ul>
+            <li>usual process of rendering markup on the server</li>
+            <li>send back any content (replaces old one)</li>
+        </ul>
+        <div style="text-align: left;">
+            <br>
+        </div>
+        <h3>cons:</h3>
+        <div style="text-align: center;">
+            <ul>
+                <li>rendering markup on server may be slow</li>
+                <li>big response</li>
+                <li>lots of re-rendering on client</li>
+                <li>input-element focus lost</li>
+                <li>difficult to update multiple parts of page</li>
+                <li>tempting to include js in response&nbsp;☢</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section>
+    <h2>Responding with JSON</h2>
+    <div>
+        <br>
+    </div>
+    <h3>pros:</h3>
+    <div>
+        <ul>
+            <li>
+                <span style="text-align: center;letter-spacing: -0.02em;">clean &amp; you get an API for free</span>
+                <br>
+            </li>
+            <li>
+                <span style="text-align: center;letter-spacing: -0.02em;">lightweight</span>
+            </li>
+            <li>
+                <span style="text-align: center;letter-spacing: -0.02em;">update anything on client</span>
+            </li>
+        </ul>
+        <div>
+            <br>
+        </div>
+    </div>
+    <h3>cons:</h3>
+    <div>
+        <ul>
+            <li>parse &amp; handle response (code overhead)</li>
+            <li>more js required</li>
+        </ul>
+    </div>
+</section>
+<section>
+    <h2>Let's dive in!</h2>
+    <div>
+        <br>
+    </div>
+    <h3>
+        <br>
+    </h3>
+    <h3>
+        <br>
+    </h3>
+    <h3>DEMO-TIME!</h3>
+</section>
+<section>
+    <h2>enter Knockout.js</h2>
+    <div>
+        <br>
+    </div>
+    <div>
+        <ul>
+            <li style="text-align: left;">
+                <span style="text-align: center;letter-spacing: -0.02em;">Removes our ugly boilerplate js code</span>
+            </li>
+            <li style="text-align: left;">
+                <span style="text-align: center;letter-spacing: -0.02em;">no more id/class just for selecting via jQ</span>
+            </li>
+            <li style="text-align: left;">
+                <span style="text-align: center;letter-spacing: -0.02em;">gives us a clean client-side data model</span>
+            </li>
+            <li style="text-align: left;">
+                <span style="text-align: center;letter-spacing: -0.02em;">fast, automatic updates</span>
+            </li>
+        </ul>
+        <div>
+            <br>
+        </div>
+    </div>
+    <div>
+        <br>
+    </div>
+    <h3>what you'll use:</h3>
+    <div>
+        <ul>
+            <li>
+                <span style="text-align: center;letter-spacing: -0.02em;">observables (wrapped js objects, supports lists)</span>
+                <br>
+            </li>
+            <li>
+                <span style="text-align: center;letter-spacing: -0.02em;">data binding via data-bind="text: userName"</span>
+            </li>
+        </ul>
+    </div>
+</section>
+<section>
+    <h2>Cons of knockout.js</h2>
+    <div>
+        <br>
+    </div>
+    <div>
+        <ul>
+            <li>another level of ind<span style="letter-spacing: -0.02em;">irection</span>
+        </li>
+        <li>takes time at first pageload (if ko-only)</li>
+    </ul>
+    <div style="text-align: left;">
+        <br>
+    </div>
+    <div style="text-align: center;">
+        <img src="https://dl.dropbox.com/u/1526874/knockout/indirection.jpg">
+        <br>
+    </div>
+</div>
+</section>
+<section>
+    <h2>Where we got to</h2>
+    <div>
+        <br>
+    </div>
+    <pre><code>    &lt;label for="userName"&gt;Name&lt;/label&gt;
+    &lt;g:textField name="userName" data-bind="value: user.userName" /&gt;
+
+    &lt;label for="status"&gt;Status&lt;/label&gt;
+    &lt;g:textField name="status" data-bind="value: user.status" /&gt;
+
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;g:textField name="email" data-bind="value: user.email" /&gt;<br>
+</code></pre>
+<div>
+    <br>
+</div>
+</section>
+<section>
+    <h2>Performance</h2>
+    <div>data-bind="foreach: ..." slow with big lists</div>
+    <div>(just because of default templating &nbsp;system)</div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>can be worked around, let's try it!<br>
+    </div>
+    <div>
+        <br>
+    </div>
+    <h3>
+        <br>
+    </h3>
+    <h3>PLAY-TIME!</h3>
+    <div>
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+</section>
+<section>
+    <section>
+        <h2>More about knockout.js</h2>
+        <div>
+            <br>
+        </div>
+        <div>
+            <a href="http://knockoutjs.com/" style="letter-spacing: -0.02em;">http://knockoutjs.com/</a>
+            <br>
+        </div>
+        <div>
+            <a href="http://knockoutjs.com/">
+                <br>
+            </a>
+        </div>
+        <div>Try the interactive tutorial!</div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <h3>Awesome features to checkout:</h3>
+        <div>
+            <br>
+        </div>
+        <div>
+            <ul>
+                <li>Dependency tracking (computed props)</li>
+                <li>Many more types of bindings</li>
+                <li>Templating</li>
+                <li>Custom bindings</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h2>Further reading</h2>
+        <div>
+            <br>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="http://userinexperience.com/?p=633">http://userinexperience.com/?p=633</a>
+                    <br>
+                </li>
+                <li>http://dev.hasenj.org/post/35572197519<br>
+                </li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Alternatives?</h2>
+    <div>
+        <br>
+    </div>
+    <div>Checkout: <a href="http://addyosmani.github.com/todomvc/">TodoMVC</a>
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <ul>
+        <li>
+            <span style="text-align: center; letter-spacing: -0.02em;">
+                <a href="http://backbonejs.org">Backbone.js</a>
+            </span>
+            <br>
+        </li>
+        <li>
+            <a href="http://kmalakoff.github.com/knockback/">Knockback.js</a>
+        </li>
+        <li>
+            <span style="text-align: center; letter-spacing: -0.02em;">
+                <a href="http://emberjs.com/">ember.js</a>
+            </span>
+        </li>
+        <li>
+            <a href="http://angularjs.org/">Angular.js</a>
+        </li>
+        <li>...</li>
+    </ul>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----  END OF SLIDES  ---->
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
