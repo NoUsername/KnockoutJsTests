@@ -1,3 +1,4 @@
+full page refresh
 <g:render template="/tpl/msg" />
 <form action="${createLink(action: 'saveUser')}" name="userForm" id="userForm" >
 

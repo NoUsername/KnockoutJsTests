@@ -1,3 +1,4 @@
+ajax submit with html response &amp; hacky top-bar fix
 <g:render template="/tpl/msg" />
 <form action="${createLink(action: 'saveUser3')}" name="userForm" id="userForm" onsubmit="return submitViaJquery()">
 

@@ -24,10 +24,9 @@
 
         <br/>
         <ul>
-            <li><g:link controller="start" action="index1">Version 1</g:link></li>
-            <li><g:link controller="start" action="index2">Version 2</g:link></li>
-            <li><g:link controller="start" action="index3">Version 3</g:link></li>
-            <li><g:link controller="start" action="index4">Version 4</g:link></li>
+            <g:each in="${[1,2,3,4,5]}" var="i">
+                <li><g:link controller="start" action="index" params="[version:i]">Version ${i}</g:link></li>
+            </g:each>
         </ul>
     </div>
 </div>

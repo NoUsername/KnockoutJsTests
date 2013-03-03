@@ -1,3 +1,4 @@
+ajax submit with html response
 <g:render template="/tpl/msg" />
 <g:formRemote url="[action: 'saveUser2']" update="formContainer" name="userForm" id="userForm" >
 

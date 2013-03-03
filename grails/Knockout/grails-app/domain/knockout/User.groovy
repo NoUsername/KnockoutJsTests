@@ -7,5 +7,7 @@ class User {
     String status
 
     static constraints = {
+        email(email: true)
+        status(maxSize: 20)
     }
 }
