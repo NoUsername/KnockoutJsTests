@@ -52,6 +52,8 @@
     <br>
 </p>
 <h3>Why you are doing ajax wrong...</h3>
+<br><br>
+<p>by <a href="http://www.paukl.at">Paul Klingelhuber</a></p>
 </section>
 <section>
     <h2>Central Question:</h2>
@@ -104,7 +106,8 @@ function getUsername() {
     <div>
         <br>
     </div>
-    <pre><code>    &lt;label for="userName"&gt;Name&lt;/label&gt;
+    <pre><code>
+    &lt;label for="userName"&gt;Name&lt;/label&gt;
     &lt;g:textField name="userName" value="${user?.userName}" /&gt;
 
     &lt;label for="status"&gt;Status&lt;/label&gt;
@@ -149,7 +152,7 @@ function getUsername() {
         <br>
     </div>
     <div>
-        <img src="http://dl.dropbox.com/u/1526874/knockout/ajaj.jpg">
+        <img height="50%" src="http://dl.dropbox.com/u/1526874/knockout/ajaj.jpg">
         <br>
     </div>
 </section>
@@ -212,6 +215,7 @@ function getUsername() {
     </div>
 </section>
 <section>
+	<section>
     <h2>Let's dive in!</h2>
     <div>
         <br>
@@ -223,6 +227,40 @@ function getUsername() {
         <br>
     </h3>
     <h3>DEMO-TIME!</h3>
+</section>
+<section>
+	<!-- demo notes--> 
+	<h2>Notes</h2>
+	<h3>Full page refresh</h3>
+	<div>
+	Everything has to be re-requested.
+	<br><br>
+	</div>
+	<h3>Ajax post</h3>
+	Only specific part of page can be updated.<br><br>
+	<h3>Ajax post with custom js</h3>
+	Mmmm, Pasta!<br/><br/>
+	<h3>Ajax post with JSON response</h3>
+	Cleaner, but still manual coding effort.
+</section>
+<section>
+	<h2>Examples</h2>
+	Hacky custom form post with additional page-element update.
+	<div>
+		<pre><code>function submitViaJquery() {
+    $.ajax({
+        url: '/example?' + $('#userForm').serialize()
+    }).done(function(data) {
+        var target = $('#formContainer');
+        target.html(data);
+        var username = $('#userForm input[name=userName]').val();
+        // now update the top-bar
+        $('span.userName').text(username);
+    });
+    return false;
+}</code></pre>
+	</div>
+</section>
 </section>
 <section>
     <h2>enter Knockout.js</h2>
@@ -289,7 +327,8 @@ function getUsername() {
     <div>
         <br>
     </div>
-    <pre><code>    &lt;label for="userName"&gt;Name&lt;/label&gt;
+    <pre><code>
+    &lt;label for="userName"&gt;Name&lt;/label&gt;
     &lt;g:textField name="userName" data-bind="value: user.userName" /&gt;
 
     &lt;label for="status"&gt;Status&lt;/label&gt;
@@ -303,6 +342,7 @@ function getUsername() {
 </div>
 </section>
 <section>
+	<section>
     <h2>Performance</h2>
     <div>data-bind="foreach: ..." slow with big lists</div>
     <div>(just because of default templating &nbsp;system)</div>
@@ -328,6 +368,25 @@ function getUsername() {
         <br>
     </div>
 </section>
+<section>	
+<h2>Notes</h2>
+Didn't use <code>observableCollection</code> instead uses <em>2500</em> individual observables which are bound to 1 div each.	<br><br>
+Problem was probably only the <code>data-bind="foreach: ..."</code> not the <code>observalbeCollection</code> itself.
+<br><br>
+When testing locally 120 events / second were absolutely no problem in Chrome. Looked a little bit choppy in Firefox.
+</section>	
+</section>
+<section>
+	<h2>Security</h2>
+	<br/>
+	<br/>
+	<div>Be careful with things like this:
+	</div>
+<pre><code>
+var viewModel = ko.mapping.fromJS(${[msg:'', user:user] as JSON});
+
+</code></pre>
+</section>
 <section>
     <section>
         <h2>More about knockout.js</h2>
@@ -352,14 +411,12 @@ function getUsername() {
         </div>
         <h3>Awesome features to checkout:</h3>
         <div>
-            <br>
-        </div>
-        <div>
             <ul>
                 <li>Dependency tracking (computed props)</li>
                 <li>Many more types of bindings</li>
                 <li>Templating</li>
                 <li>Custom bindings</li>
+                <li>SPA-s anyone?</li>
             </ul>
         </div>
     </section>
@@ -448,7 +505,7 @@ function getUsername() {
 				history: true,
 				center: true,
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				theme: Reveal.getQueryHash().theme || 'night2', // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Optional libraries used to extend on reveal.js

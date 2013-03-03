@@ -19,12 +19,12 @@ ajax submit with html response &amp; hacky top-bar fix
         $.ajax({
             url: $('#userForm').attr('action') + '?' + $('#userForm').serialize()
         }).done(function(data) {
-                    var target = $('#formContainer');
-                    target.html(data);
-                    var username = $('#userForm input[name=userName]').val();
-                    // now update the top-bar
-                    $('span.userName').text(username);
-                });
+            var target = $('#formContainer');
+            target.html(data);
+            var username = $('#userForm input[name=userName]').val();
+            // now update the top-bar
+            $('span.userName').text(username);
+        });
         return false;
     }
 </script>
