@@ -1,3 +1,6 @@
+/**
+* Author:   Paul Klingelhuber paul.klingelhuber@gmail.com
+*/
 (function($) {
 	"use strict";
 	var app = window.app || {};

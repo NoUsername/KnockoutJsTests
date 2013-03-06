@@ -4,10 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Knokout.js data binding - AJAX</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="author" content="Paul Klingelhuber paul.klingelhuber@gmail.com">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -130,7 +129,7 @@ function getUsername() {
         <br>
     </div>
     <div>
-        <img src="https://dl.dropbox.com/u/1526874/knockout/ajax.jpg">
+        <img src="resources/ajax.jpg">
         <br>
     </div>
 </section>
@@ -152,7 +151,7 @@ function getUsername() {
         <br>
     </div>
     <div>
-        <img height="50%" src="http://dl.dropbox.com/u/1526874/knockout/ajaj.jpg">
+        <img height="50%" src="resources/ajaj.jpg">
         <br>
     </div>
 </section>
@@ -317,7 +316,7 @@ function getUsername() {
         <br>
     </div>
     <div style="text-align: center;">
-        <img src="https://dl.dropbox.com/u/1526874/knockout/indirection.jpg">
+        <img src="resources/indirection.jpg">
         <br>
     </div>
 </div>
@@ -369,12 +368,22 @@ function getUsername() {
     </div>
 </section>
 <section>	
-<h2>Notes</h2>
-Didn't use <code>observableCollection</code> instead uses <em>2500</em> individual observables which are bound to 1 div each.	<br><br>
-Problem was probably only the <code>data-bind="foreach: ..."</code> not the <code>observalbeCollection</code> itself.
-<br><br>
-When testing locally 120 events / second were absolutely no problem in Chrome. Looked a little bit choppy in Firefox.
-</section>	
+    <h2>Notes</h2>
+    Didn't use <code>observableCollection</code> instead uses <em>2500</em> individual observables which are bound to 1 div each.	<br><br>
+    Problem was probably only the <code>data-bind="foreach: ..."</code> not the <code>observableCollection</code> itself.
+    <br><br>
+    When testing locally 120 events / second were absolutely no problem in Chrome. Looked a little bit choppy in Firefox.
+</section>
+</section>
+<section>
+    <h2>Performance II</h2>
+    <br><br>
+    That looked ok, so what's the limit?
+    <br><br>
+    Lets find out with the help of an old friend!
+    <br><br>
+    <a onclick="document.getElementById('audioHint1').play();">hint</a>
+    <audio src="resources/smb_pipe.wav" id="audioHint1">I'd recommend a real browser ;)</audio>
 </section>
 <section>
 	<h2>Security</h2>
@@ -386,6 +395,9 @@ When testing locally 120 events / second were absolutely no problem in Chrome. L
 var viewModel = ko.mapping.fromJS(${[msg:'', user:user] as JSON});
 
 </code></pre>
+<br>
+If you are using Grails checkout <a href="http://compiledammit.com/2012/08/16/custom-json-marshalling-in-grails-done-right/">custom JSON Marshallers</a>!
+
 </section>
 <section>
     <section>
@@ -431,7 +443,8 @@ var viewModel = ko.mapping.fromJS(${[msg:'', user:user] as JSON});
                     <a href="http://userinexperience.com/?p=633">http://userinexperience.com/?p=633</a>
                     <br>
                 </li>
-                <li>http://dev.hasenj.org/post/35572197519<br>
+                <li><a href="http://dev.hasenj.org/post/35572197519
+">http://dev.hasenj.org/post/35572197519</a><br>
                 </li>
             </ul>
         </div>
@@ -473,7 +486,16 @@ var viewModel = ko.mapping.fromJS(${[msg:'', user:user] as JSON});
     </ul>
 </div>
 </section>
+<section>
+<h2>Questions, rants & other opinions welcome ...</h2>
+<br>
+Source code <a href="https://github.com/NoUsername/KnockoutJsTests">available on github</a>
+<br><br>
+Otherwise:
+<a onclick="document.getElementById('audioHintEnd').play();">thank you</a>
+<audio src="resources/smb_gameover.wav" id="audioHintEnd">I'd recommend a real browser ;)</audio>
 
+</section>
 
 
 
