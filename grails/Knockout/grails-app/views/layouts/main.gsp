@@ -29,6 +29,10 @@
                 <li><g:link controller="start" action="index" params="[version:i]">Version ${i}</g:link></li>
             </g:each>
         </ul>
+        <br>
+        <ul>
+            <li><g:link controller="jsonExample">Json, json, json...</g:link></li>
+        </ul>
     </div>
 </div>
 

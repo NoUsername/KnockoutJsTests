@@ -4,6 +4,9 @@
 @lightBgColor: lighten(@strongBgColor, 50%);//#F5F5F5;
 @topbarColor: lighten(@strongBgColor, 20%);
 
+@errorColor: #c26058;
+@successColor: #6bba5e;
+
 @defaultOffset: 0.5em;
 
 .defaultInsets() {
@@ -63,4 +66,27 @@ html {
 #userForm {
   label { display: block;  }
   input { display: block; }
+}
+
+.jsonExample {
+  margin-left: 1em;
+  .successMessage {
+    .centeredChildMessageBox(@successColor);
+  }
+
+  .errorMessage {
+    .centeredChildMessageBox(@errorColor);
+  }
+
+  li {
+    list-style: circle;
+    margin-left: 2em;
+  }
+
+  h2 {
+    font-size: 110%;
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+  }
+
 }

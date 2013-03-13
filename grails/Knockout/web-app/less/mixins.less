@@ -7,3 +7,24 @@
 .defaultShadow() {
   .box-shadow(0 0 1em, #BFBFBF);
 }
+
+.centeredChildDiv() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  div {
+    position: relative;
+    left: -50%;
+    top: -50%;
+  }
+}
+
+.centeredChildMessageBox(@bgColor) {
+  .centeredChildDiv();
+  div {
+    .defaultShadow();
+    padding: 1em;
+    border: dotted black 1px;
+    background-color: @bgColor;
+  }
+}
